@@ -2,20 +2,22 @@ const axios = require("axios");
 
 export default async function handler(req, res) {
   console.log(req.body.username);
-
   axios
     .get(
       "https://my-json-server.typicode.com/proactivehealth/work-test-sample/users"
     )
     .then(function (response) {
-      response.data.map((user) => {
-        if (user.login === req.body.username) {
-          res.send();
-        }
-      });
+      const exist = response.data.find(
+        (user) => user.login == req.body.username
+      );
+      console.log(exist);
+      if (exist) {
+        res.json({ status: 200, user: exist });
+      } else {
+        res.json({ status: 401 });
+      }
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     });
 }
