@@ -1,7 +1,6 @@
 const axios = require("axios");
 
 export default async function handler(req, res) {
-  console.log(req.body.username);
   axios
     .get(
       "https://my-json-server.typicode.com/proactivehealth/work-test-sample/users"

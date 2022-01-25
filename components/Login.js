@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 
-const Login = ({ loginStatus, abc }) => {
+const Login = ({ loginStatus, setLoginStatus, setUserData }) => {
   const [username, setUsername] = useState("");
-  console.log(abc);
-  console.log(loginStatus);
+  const [usernameError, setUsernameError] = useState(false);
   const handleSubmit = async (e) => {
     if (!loginStatus) {
       axios
@@ -12,34 +11,32 @@ const Login = ({ loginStatus, abc }) => {
           username: username,
         })
         .then(function (response) {
-          console.log(response);
-
           //Checks status from request returns 200 or 401.
           if (response.data.status === 200) {
-            console.log("Succesful login!");
-            setloginStatus(true);
+            setUserData(response.data.user);
+            setLoginStatus(true);
+            setUsernameError(false);
           } else {
-            // setloginStatus(false);
-            console.log("Wrong");
+            setloginStatus(false);
+            setUsernameError(true);
+            console.log(usernameError);
           }
         })
         .catch(function (error) {
           console.log(error);
         });
-
-      //If login is successful, prevent further login attempts.
     }
   };
 
   return (
     <div className="mx-auto h-[100vh] flex flex-col justify-center font-libre">
       <div
-        className="bg-white py-[20px] lg:py-[50px] px-[20px] lg:px-[50px] w-3/4 md:w-3/4 lg:w-1/2 mx-auto rounded-[22px]"
+        className="bg-white py-[20px] w-[90vw] md:w-[85vw] lg:w-[75vw] lg:py-[50px] px-[20px] lg:px-[50px] mx-auto rounded-[22px]"
         style={{
           boxShadow: "5px 8px 25px 10px rgba(0,0,0,0.3)",
         }}
       >
-        <h2 className="mb-4 text-[22px] md:text-[28px] lg:text-[33px]">
+        <h2 className="font-bold mb-3 text-[20px] md:text-[26px] lg:text-[30px]">
           Logga in med ditt användarnamn
         </h2>
         <input

@@ -4,13 +4,20 @@ import InsuranceDashboard from "../components/InsuranceDashboard";
 
 const Home = () => {
   const [loginStatus, setLoginStatus] = useState(false);
-  console.log(loginStatus);
+  const [userData, setUserData] = useState({});
   return (
     <>
       {!loginStatus ? (
-        <Login loginStatus={setLoginStatus} abc={loginStatus} />
+        <Login
+          setLoginStatus={setLoginStatus}
+          loginStatus={loginStatus}
+          setUserData={setUserData}
+        />
       ) : (
-        <InsuranceDashboard />
+        <InsuranceDashboard
+          userData={userData}
+          setLoginStatus={setLoginStatus}
+        />
       )}
     </>
   );
