@@ -8,7 +8,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     console.log(username);
     e.preventDefault();
-    //aa
+
     if (!loginStatus) {
       axios
         .post("/api/login", {
