@@ -10,7 +10,8 @@ export default async function handler(req, res) {
       const exist = response.data.find(
         (user) => user.login == req.body.username
       );
-      console.log(exist);
+
+      //We create the statuscodes myself since this request always returns as a status 200 but for this example and login validation that won't be correct.
       if (exist) {
         res.json({ status: 200, user: exist });
       } else {
