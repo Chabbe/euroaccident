@@ -5,6 +5,8 @@ import InsuranceDashboard from "../components/InsuranceDashboard";
 const Home = () => {
   const [loginStatus, setLoginStatus] = useState(false);
   const [userData, setUserData] = useState({});
+
+  //Based on loginStatus renders login component or the dashboard
   return (
     <>
       {!loginStatus ? (

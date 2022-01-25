@@ -7,7 +7,7 @@ const MyPages = ({ userData, setLoginStatus }) => {
   useEffect(() => {
     fetchUserInsurances();
   }, [userData]);
-
+  //Call to next-api to retrieve current users insurances
   const fetchUserInsurances = (async) => {
     axios
       .post("/api/getUserInsurances", {
@@ -20,7 +20,7 @@ const MyPages = ({ userData, setLoginStatus }) => {
         console.log(error);
       });
   };
-
+  //"Logsout" by changing the loginStatus state.
   const logout = () => {
     setLoginStatus(false);
   };
